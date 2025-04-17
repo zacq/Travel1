@@ -1,7 +1,8 @@
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
-import { motion, AnimatePresence } from 'framer-motion';
+import { AnimatePresence } from 'framer-motion';
 import Navbar from './components/Navbar';
 import Footer from './components/Footer';
+import Chatbot from './components/ChatbotNew';
 import Home from './pages/Home';
 import Destinations from './pages/Destinations';
 import Activities from './pages/Activities';
@@ -25,9 +26,10 @@ function App() {
           </AnimatePresence>
         </main>
         <Footer />
+        <Chatbot />
       </div>
     </Router>
   );
 }
 
-export default App; 
+export default App;

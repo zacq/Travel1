@@ -1,5 +1,29 @@
 import { motion } from 'framer-motion'
-import { GlobeAltIcon, UserGroupIcon, HeartIcon } from '@heroicons/react/24/outline'
+import { GlobeAltIcon, UserGroupIcon, HeartIcon, CalendarIcon } from '@heroicons/react/24/outline'
+
+const blogPosts = [
+  {
+    title: "Top 10 Hidden Gems in Southeast Asia",
+    excerpt: "Discover the unexplored wonders of Southeast Asia that most tourists never see...",
+    date: "March 15, 2024",
+    author: "Sarah Johnson",
+    image: "/images/southeast-asia.jpg"
+  },
+  {
+    title: "Sustainable Travel: A Guide to Eco-Tourism",
+    excerpt: "Learn how to minimize your environmental impact while maximizing your travel experiences...",
+    date: "March 10, 2024",
+    author: "Michael Chen",
+    image: "/images/eco-tourism.jpg"
+  },
+  {
+    title: "Adventure Photography Tips from the Pros",
+    excerpt: "Expert photographers share their secrets for capturing stunning travel moments...",
+    date: "March 5, 2024",
+    author: "David Miller",
+    image: "/images/photography.jpg"
+  }
+];
 
 export default function About() {
   return (
@@ -52,7 +76,7 @@ export default function About() {
           ))}
         </div>
 
-        <div className="max-w-4xl mx-auto">
+        <div className="max-w-4xl mx-auto mb-20">
           <h2 className="text-2xl font-bold text-center mb-8">Our Story</h2>
           <div className="prose prose-lg mx-auto">
             <p className="text-gray-600 mb-6">
@@ -66,6 +90,58 @@ export default function About() {
             </p>
           </div>
         </div>
+
+        {/* New Blog Section */}
+        <motion.div
+          initial={{ opacity: 0, y: 20 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.5, delay: 0.2 }}
+          className="max-w-6xl mx-auto"
+        >
+          <h2 className="text-3xl font-bold text-center mb-12">Latest from Our Blog</h2>
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+            {blogPosts.map((post, index) => (
+              <motion.div
+                key={post.title}
+                initial={{ opacity: 0, y: 20 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.5, delay: index * 0.1 }}
+                className="bg-white rounded-lg shadow-md overflow-hidden hover:shadow-xl transition-shadow duration-300"
+              >
+                <div className="relative h-48">
+                  <img
+                    src={post.image}
+                    alt={post.title}
+                    className="w-full h-full object-cover"
+                  />
+                </div>
+                <div className="p-6">
+                  <div className="flex items-center text-sm text-gray-500 mb-2">
+                    <CalendarIcon className="h-4 w-4 mr-2" />
+                    <span>{post.date}</span>
+                  </div>
+                  <h3 className="text-xl font-bold mb-2 hover:text-primary-600 transition-colors">
+                    {post.title}
+                  </h3>
+                  <p className="text-gray-600 mb-4">
+                    {post.excerpt}
+                  </p>
+                  <div className="flex items-center justify-between">
+                    <span className="text-sm text-gray-500">By {post.author}</span>
+                    <button className="text-primary-600 hover:text-primary-700 font-medium">
+                      Read More →
+                    </button>
+                  </div>
+                </div>
+              </motion.div>
+            ))}
+          </div>
+          <div className="text-center mt-8">
+            <button className="btn btn-primary">
+              View All Posts
+            </button>
+          </div>
+        </motion.div>
       </motion.div>
     </div>
   )
